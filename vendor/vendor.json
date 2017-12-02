@@ -15,8 +15,20 @@
 			"revisionTime": "2017-09-29T23:40:23Z"
 		},
 		{
+			"checksumSHA1": "uDPQ3nHsrvGQc9tg/J9OSC4N5dQ=",
+			"path": "github.com/docker/docker/api/types/versions",
+			"revision": "7ef9266ba090a3230355c39352dddf41aeb5b726",
+			"revisionTime": "2017-12-02T01:30:12Z"
+		},
+		{
 			"checksumSHA1": "P5KwwPVkqPUHGICe2otYhXTSIRY=",
 			"path": "github.com/docker/docker/pkg/term",
+			"revision": "7ef9266ba090a3230355c39352dddf41aeb5b726",
+			"revisionTime": "2017-12-02T01:30:12Z"
+		},
+		{
+			"checksumSHA1": "NcljihOPc95QOyQAdufyy3eqKSU=",
+			"path": "github.com/docker/docker/pkg/term/windows",
 			"revision": "7ef9266ba090a3230355c39352dddf41aeb5b726",
 			"revisionTime": "2017-12-02T01:30:12Z"
 		},
@@ -169,6 +181,12 @@
 			"path": "github.com/spf13/viper",
 			"revision": "0967fc9aceab2ce9da34061253ac10fb99bba5b2",
 			"revisionTime": "2017-04-17T08:08:15Z"
+		},
+		{
+			"checksumSHA1": "X1NTlfcau2XcV6WtAHF6b/DECOA=",
+			"path": "golang.org/x/crypto/ssh/terminal",
+			"revision": "94eea52f7b742c7cbe0b03b22f0c4c8631ece122",
+			"revisionTime": "2017-11-28T01:43:40Z"
 		},
 		{
 			"checksumSHA1": "GvrtqfUw0+pPZ1ODQB+X1DqCQmM=",
