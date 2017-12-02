@@ -16,3 +16,4 @@ install:
 script:
   - govendor vet +local
   - govendor test +local
+  - go build main.go
