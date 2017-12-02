@@ -2,8 +2,8 @@ package cmd
 
 import (
 	"fmt"
-	"github.com/spf13/cobra"
 	"github.com/skabashnyuk/cli/cli/command"
+	"github.com/spf13/cobra"
 )
 
 // NewVersionCommand creates a new cobra.Command for `che version`

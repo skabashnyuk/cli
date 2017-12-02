@@ -15,17 +15,17 @@
 package main
 
 import (
-	"github.com/skabashnyuk/cli/cli/command"
-	"github.com/skabashnyuk/cli/cli"
-	"github.com/skabashnyuk/cli/cli/flags"
-	commands "github.com/skabashnyuk/cli/cmd"
 	"fmt"
-	"github.com/spf13/pflag"
-	"github.com/spf13/cobra"
+	"github.com/docker/docker/api/types/versions"
 	"github.com/docker/docker/pkg/term"
 	"github.com/sirupsen/logrus"
+	"github.com/skabashnyuk/cli/cli"
+	"github.com/skabashnyuk/cli/cli/command"
+	"github.com/skabashnyuk/cli/cli/flags"
+	commands "github.com/skabashnyuk/cli/cmd"
+	"github.com/spf13/cobra"
+	"github.com/spf13/pflag"
 	"os"
-	"github.com/docker/docker/api/types/versions"
 )
 
 func newCheCommand(CheCli *command.CheCli) *cobra.Command {
