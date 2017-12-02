@@ -15,10 +15,10 @@
 package main
 
 import (
-	"./cli/command"
-	"./cli"
-	"./cli/flags"
-	commands "./cmd"
+	"github.com/skabashnyuk/cli/cli/command"
+	"github.com/skabashnyuk/cli/cli"
+	"github.com/skabashnyuk/cli/cli/flags"
+	commands "github.com/skabashnyuk/cli/cmd"
 	"fmt"
 	"github.com/spf13/pflag"
 	"github.com/spf13/cobra"
@@ -34,7 +34,7 @@ func newCheCommand(CheCli *command.CheCli) *cobra.Command {
 
 	cmd := &cobra.Command{
 		Use:              "che [OPTIONS] COMMAND [ARG...]",
-		Short:            "A self-sufficient runtime for containers",
+		Short:            "Eclipse Che cli",
 		SilenceUsage:     true,
 		SilenceErrors:    true,
 		TraverseChildren: true,
@@ -71,7 +71,7 @@ func noArgs(cmd *cobra.Command, args []string) error {
 		return nil
 	}
 	return fmt.Errorf(
-		"docker: '%s' is not a docker command.\nSee 'docker --help'", args[0])
+		"che: '%s' is not a che command.\nSee 'che --help'", args[0])
 }
 
 func main() {

@@ -3,6 +3,18 @@
 	"ignore": "test",
 	"package": [
 		{
+			"checksumSHA1": "9NFR6RG8H2fNyKHscGmuGLQhRm4=",
+			"path": "github.com/Azure/go-ansiterm",
+			"revision": "d6e3b3328b783f23731bc4d058875b0371ff8109",
+			"revisionTime": "2017-09-29T23:40:23Z"
+		},
+		{
+			"checksumSHA1": "3/UphB+6Hbx5otA4PjFjvObT+L4=",
+			"path": "github.com/Azure/go-ansiterm/winterm",
+			"revision": "d6e3b3328b783f23731bc4d058875b0371ff8109",
+			"revisionTime": "2017-09-29T23:40:23Z"
+		},
+		{
 			"checksumSHA1": "P5KwwPVkqPUHGICe2otYhXTSIRY=",
 			"path": "github.com/docker/docker/pkg/term",
 			"revision": "7ef9266ba090a3230355c39352dddf41aeb5b726",
@@ -67,6 +79,12 @@
 			"path": "github.com/hashicorp/hcl/json/token",
 			"revision": "7fa7fff964d035e8a162cce3a164b3ad02ad651b",
 			"revisionTime": "2017-04-20T23:14:34Z"
+		},
+		{
+			"checksumSHA1": "40vJyUB4ezQSn/NSadsKEOrudMc=",
+			"path": "github.com/inconshreveable/mousetrap",
+			"revision": "76626ae9c91c4f2a10f34cad8ce83ea42c93bb75",
+			"revisionTime": "2014-10-17T20:07:13Z"
 		},
 		{
 			"checksumSHA1": "UvboqgDDSAbGORdtr5tBpkwYR0A=",
@@ -153,10 +171,10 @@
 			"revisionTime": "2017-04-17T08:08:15Z"
 		},
 		{
-			"checksumSHA1": "aKtLMPSG9M5LG4aUPDkPf6rBhas=",
+			"checksumSHA1": "GvrtqfUw0+pPZ1ODQB+X1DqCQmM=",
 			"path": "golang.org/x/sys/unix",
-			"revision": "9f30dcbe5be197894515a338a9bda9253567ea8f",
-			"revisionTime": "2017-04-25T04:17:24Z"
+			"revision": "8b4580aae2a0dd0c231a45d3ccb8434ff533b840",
+			"revisionTime": "2017-11-30T16:26:51Z"
 		},
 		{
 			"checksumSHA1": "ziMb9+ANGRJSSIuxYdRbA+cDRBQ=",

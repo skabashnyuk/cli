@@ -2,7 +2,7 @@ package cmd
 
 import (
 	"github.com/spf13/cobra"
-	"../cli/command"
+	"github.com/skabashnyuk/cli/cli/command"
 )
 
 // AddCommands adds all the commands from cli/command to the root command
