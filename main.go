@@ -49,7 +49,6 @@ func newCheCommand(CheCli *command.CheCli) *cobra.Command {
 	cmd.SetOutput(CheCli.Out())
 	commands.AddCommands(cmd, CheCli)
 
-
 	return cmd
 }
 

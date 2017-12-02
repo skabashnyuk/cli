@@ -2,7 +2,6 @@ package command
 
 import (
 	"io"
-
 )
 
 // Streams is an interface which exposes the standard input and output streams
@@ -27,13 +26,10 @@ type CheCli struct {
 	defaultVersion string
 }
 
-
-
 // DefaultVersion returns api.defaultVersion or DOCKER_API_VERSION if specified.
 func (cli *CheCli) DefaultVersion() string {
 	return cli.defaultVersion
 }
-
 
 // Out returns the writer used for stdout
 func (cli *CheCli) Out() *OutStream {

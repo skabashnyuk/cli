@@ -1,7 +1,5 @@
 package command
 
-
-
 import (
 	"io"
 	"os"

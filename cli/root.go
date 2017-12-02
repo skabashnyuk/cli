@@ -18,7 +18,7 @@ import (
 	"fmt"
 	"os"
 
-	homedir "github.com/mitchellh/go-homedir"
+	"github.com/mitchellh/go-homedir"
 	"github.com/spf13/cobra"
 	"github.com/spf13/viper"
 )
@@ -29,12 +29,11 @@ var cfgFile string
 var rootCmd = &cobra.Command{
 	Use:   "che [OPTIONS] COMMAND [ARG...]",
 	Short: "Eclipse Che",
-	Long: "Long Eclipse Che",
+	Long:  "Long Eclipse Che",
 	//SilenceUsage:     true,
 	//SilenceErrors:    true,
 	//TraverseChildren: true,
 	//Args:             noArgs,
-
 }
 
 func noArgs(cmd *cobra.Command, args []string) error {
@@ -45,7 +44,6 @@ func noArgs(cmd *cobra.Command, args []string) error {
 		"che: '%s' is not a che command.\nSee 'che --help'", args[0])
 }
 
-
 // Execute adds all child commands to the root command and sets flags appropriately.
 // This is called by main.main(). It only needs to happen once to the rootCmd.
 func Execute() {
@@ -55,7 +53,7 @@ func Execute() {
 	}
 }
 
-func init() { 
+func init() {
 	cobra.OnInitialize(initConfig)
 
 }

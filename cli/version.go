@@ -1,7 +1,5 @@
 package cli
 
-
-
 // Default build-time variable.
 // These values are overriding via ldflags
 var (

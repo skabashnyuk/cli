@@ -1,7 +1,5 @@
 package command
 
-
-
 import (
 	"github.com/docker/docker/pkg/term"
 )
