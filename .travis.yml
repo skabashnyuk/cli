@@ -1,19 +1,36 @@
 language: go
-
 go:
-  - 1.9
-
-# Don't email me the results of the test runs.
+- 1.9
 notifications:
   email: false
-
-
+before_deploy:
+- GOOS=linux GOARCH=amd64 go build -o govendor_linux_amd64
+- GOOS=linux GOARCH=386 go build -o govendor_linux_386
+- GOOS=linux GOARCH=arm go build -o govendor_linux_arm
+- GOOS=darwin GOARCH=amd64 go build -o govendor_darwin_amd64
+- GOOS=windows GOARCH=amd64 go build -o govendor_windows_amd64.exe
+- GOOS=windows GOARCH=386 go build -o govendor_windows_386.exe
+deploy:
+  provider: releases
+  api_key:
+    secure: 
+  file:
+  - govendor_linux_amd64
+  - govendor_linux_386
+  - govendor_linux_arm
+  - govendor_darwin_amd64
+  - govendor_windows_amd64.exe
+  - govendor_windows_386.exe
+  on:
+    tags: true
+    repo: skabashniuk/cli
+  api-key:
+    secure: NUI9+Y4eZF8tT+XYeI45EP+5pNvNeUaqczId/+rW8RtWpmCNylIRP+B5LhiclwGo1pk/1zalv+iboNfvgi6n/4PkBHc2rs0tJFinbRcK78nTnLqytOKQnA1k0DdQScQr1xZLCwF0qpiY2NuNHzsXCXCGChGUEfVUKcKL6QLUFDm4LpXPzRAJFtAIcEVmGmWC58pMz7syAkZVOEA9v3X+Spd0BmogwO3jMe0Gjj/mXcFgY+aBluuSz+t1Jxc8eCJeAtiLdEKobm6oVwIKb9xOaWIaE9Y8RLw9Shb+iyMHT2Y1qPIa2+YzEtzD3XTSLQLau8gSoDfOgBEKAlHv0044kiztrbw0pm9f6meubCVXa3FsW0envHE9NLQ8ZcQBTcyzSK19OdWFO94poFVmgFT+s6r6LdRoRcOaVVmwnVfmUhIoi3Rgs9FsMrrlk/8VG78jAKryltjcqSRXpa5ETAJOX9Sn2lUYr3AePOrjsZHjDIMELfbvi1LXRg/yuVeQrVBtijoMnhSsixVHfiSAHGjeTpEnvfmt4Mv1diZuz6CEjGmSFcS5bbQZ24xyYOpNi/nchyU+TCwuCRQvcRhz6i2zi3/VhLUPzmU4ywTY++gRUzAZzcT2Z9sGqy+Zba4IlGxORgpPdPLeUlETMzNEenGHkSqdyUqe/hz3fd1bqZKOUFo=
 install:
-  - go get github.com/kardianos/govendor
-  - govendor sync
-  - govendor list
-
+- go get github.com/kardianos/govendor
+- govendor sync
+- govendor list
 script:
-  - govendor vet +local
-  - govendor test +local
-  - go build che.go
+- govendor vet +local
+- govendor test +local
+- govendor install +local
