@@ -14,6 +14,9 @@
 
 package main
 
+//import "github.com/skabashnyuk/cli/cmd"
+import "./cmd"
+
 
 
 func main() {

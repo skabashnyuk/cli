@@ -3,6 +3,12 @@
 	"ignore": "test",
 	"package": [
 		{
+			"checksumSHA1": "P5KwwPVkqPUHGICe2otYhXTSIRY=",
+			"path": "github.com/docker/docker/pkg/term",
+			"revision": "7ef9266ba090a3230355c39352dddf41aeb5b726",
+			"revisionTime": "2017-12-02T01:30:12Z"
+		},
+		{
 			"checksumSHA1": "x2Km0Qy3WgJJnV19Zv25VwTJcBM=",
 			"path": "github.com/fsnotify/fsnotify",
 			"revision": "4da3e2cfbabc9f751898f250b49f2439785783a1",
@@ -93,6 +99,18 @@
 			"revisionTime": "2017-04-05T01:41:05Z"
 		},
 		{
+			"checksumSHA1": "ynJSWoF6v+3zMnh9R0QmmG6iGV8=",
+			"path": "github.com/pkg/errors",
+			"revision": "ff09b135c25aae272398c51a07235b90a75aa4f0",
+			"revisionTime": "2017-03-16T20:15:38Z"
+		},
+		{
+			"checksumSHA1": "fabVNshbE6WKqfO9/ymL8JGFq+k=",
+			"path": "github.com/sirupsen/logrus",
+			"revision": "10f801ebc38b33738c9d17d50860f484a0988ff5",
+			"revisionTime": "2017-03-17T14:32:14Z"
+		},
+		{
 			"checksumSHA1": "lBehULzb2/kIK3wZ0gz2yNmHq9s=",
 			"path": "github.com/spf13/afero",
 			"revision": "9be650865eab0c12963d8753212f4f9c66cdcf12",
@@ -135,7 +153,7 @@
 			"revisionTime": "2017-04-17T08:08:15Z"
 		},
 		{
-			"checksumSHA1": "2vgB3wvQ8M120d7rKtW5CFE6pUw=",
+			"checksumSHA1": "aKtLMPSG9M5LG4aUPDkPf6rBhas=",
 			"path": "golang.org/x/sys/unix",
 			"revision": "9f30dcbe5be197894515a338a9bda9253567ea8f",
 			"revisionTime": "2017-04-25T04:17:24Z"
@@ -147,7 +165,7 @@
 			"revisionTime": "2017-04-20T13:36:16Z"
 		},
 		{
-			"checksumSHA1": "sQ2iPLRUXfPPpQeREkr6F+z93f0=",
+			"checksumSHA1": "GCDImpglA0jajQXohxgWvq5zvPw=",
 			"path": "golang.org/x/text/unicode/norm",
 			"revision": "a9a820217f98f7c8a207ec1e45a874e1fe12c478",
 			"revisionTime": "2017-04-20T13:36:16Z"
