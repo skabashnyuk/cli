@@ -4,23 +4,23 @@ go:
 notifications:
   email: false
 before_deploy:
-- GOOS=linux GOARCH=amd64 go build -o govendor_linux_amd64
-- GOOS=linux GOARCH=386 go build -o govendor_linux_386
-- GOOS=linux GOARCH=arm go build -o govendor_linux_arm
-- GOOS=darwin GOARCH=amd64 go build -o govendor_darwin_amd64
-- GOOS=windows GOARCH=amd64 go build -o govendor_windows_amd64.exe
-- GOOS=windows GOARCH=386 go build -o govendor_windows_386.exe
+- GOOS=linux GOARCH=amd64 go build -o che_linux_amd64
+- GOOS=linux GOARCH=386 go build -o che_linux_386
+- GOOS=linux GOARCH=arm go build -o che_linux_arm
+- GOOS=darwin GOARCH=amd64 go build -o che_darwin_amd64
+- GOOS=windows GOARCH=amd64 go build -o che_windows_amd64.exe
+- GOOS=windows GOARCH=386 go build -o che_windows_386.exe
 deploy:
   provider: releases
   api_key:
     secure: 
   file:
-  - govendor_linux_amd64
-  - govendor_linux_386
-  - govendor_linux_arm
-  - govendor_darwin_amd64
-  - govendor_windows_amd64.exe
-  - govendor_windows_386.exe
+  - che_linux_amd64
+  - che_linux_386
+  - che_linux_arm
+  - che_darwin_amd64
+  - che_windows_amd64.exe
+  - che_windows_386.exe
   on:
     tags: true
     repo: skabashnyuk/cli
