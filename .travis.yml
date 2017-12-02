@@ -11,6 +11,7 @@ before_deploy:
 - GOOS=windows GOARCH=amd64 go build -o che_windows_amd64.exe
 - GOOS=windows GOARCH=386 go build -o che_windows_386.exe
 deploy:
+  skip_cleanup: true
   provider: releases
   api_key:
     secure: 
