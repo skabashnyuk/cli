@@ -20,7 +20,7 @@ type Cli interface {
 	SetIn(in *InStream)
 }
 
-type DockerCli struct {
+type CheCli struct {
 	in             *InStream
 	out            *OutStream
 	err            io.Writer
@@ -28,7 +28,34 @@ type DockerCli struct {
 }
 
 
+
+// DefaultVersion returns api.defaultVersion or DOCKER_API_VERSION if specified.
+func (cli *CheCli) DefaultVersion() string {
+	return cli.defaultVersion
+}
+
+
+// Out returns the writer used for stdout
+func (cli *CheCli) Out() *OutStream {
+	return cli.out
+}
+
+// Err returns the writer used for stderr
+func (cli *CheCli) Err() io.Writer {
+	return cli.err
+}
+
+// SetIn sets the reader used for stdin
+func (cli *CheCli) SetIn(in *InStream) {
+	cli.in = in
+}
+
+// In returns the reader used for stdin
+func (cli *CheCli) In() *InStream {
+	return cli.in
+}
+
 // NewCli returns a NewCli instance with IO output and error streams set by in, out and err.
-func NewCli(in io.ReadCloser, out, err io.Writer) *DockerCli {
-	return &DockerCli{in: NewInStream(in), out: NewOutStream(out), err: err}
+func NewCli(in io.ReadCloser, out, err io.Writer) *CheCli {
+	return &CheCli{in: NewInStream(in), out: NewOutStream(out), err: err}
 }

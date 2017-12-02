@@ -2,19 +2,18 @@ package cmd
 
 import (
 	"fmt"
-	"../cli/root.go"
 	"github.com/spf13/cobra"
+	"../cli/command"
 )
 
-func init() {
-	rootCmd.AddCommand(versionCmd)
-}
+// NewVersionCommand creates a new cobra.Command for `che version`
+func NewVersionCommand(cheCli *command.CheCli) *cobra.Command {
 
-var versionCmd = &cobra.Command{
-	Use:   "version",
-	Short: "Print the version number of che",
-	Long:  `All software has versions. This is Hugo's`,
-	Run: func(cmd *cobra.Command, args []string) {
-		fmt.Println("Hugo Static Site Generator v0.9 -- HEAD")
-	},
+	return &cobra.Command{
+		Use:   "version [OPTIONS]",
+		Short: "Show the Eclipse Che cli version information",
+		Run: func(cmd *cobra.Command, args []string) {
+			fmt.Println("Eclipse Che cli 1.0")
+		},
+	}
 }
