@@ -12,3 +12,4 @@ export LDFLAGS="\
     -X github.com/skabashnyuk/cli/cli.Version=${VERSION} \
     ${LDFLAGS:-} \
 "
+echo $LDFLAGS
