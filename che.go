@@ -16,7 +16,6 @@ package main
 
 import (
 	"fmt"
-	"github.com/docker/docker/api/types/versions"
 	"github.com/docker/docker/pkg/term"
 	"github.com/sirupsen/logrus"
 	"github.com/skabashnyuk/cli/cli"
@@ -101,36 +100,4 @@ func main() {
 
 func showVersion() {
 	fmt.Printf("Eclipse Che cli version %s, build %s\n", cli.Version, cli.GitCommit)
-}
-
-func getFlagAnnotation(f *pflag.Flag, annotation string) string {
-	if value, ok := f.Annotations[annotation]; ok && len(value) == 1 {
-		return value[0]
-	}
-	return ""
-}
-
-func isVersionSupported(f *pflag.Flag, clientVersion string) bool {
-	if v := getFlagAnnotation(f, "version"); v != "" {
-		return versions.GreaterThanOrEqualTo(clientVersion, v)
-	}
-	return true
-}
-
-func isOSTypeSupported(f *pflag.Flag, osType string) bool {
-	if v := getFlagAnnotation(f, "ostype"); v != "" && osType != "" {
-		return osType == v
-	}
-	return true
-}
-
-// hasTags return true if any of the command's parents has tags
-func hasTags(cmd *cobra.Command) bool {
-	for curr := cmd; curr != nil; curr = curr.Parent() {
-		if len(curr.Annotations) > 0 {
-			return true
-		}
-	}
-
-	return false
 }
