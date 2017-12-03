@@ -1,10 +1,10 @@
-package cmd
+package system
 
 import (
 	"github.com/docker/cli/templates"
 	"github.com/skabashnyuk/cli/cli"
-	"github.com/skabashnyuk/cli/cli/command"
 	"github.com/spf13/cobra"
+	"os"
 	"runtime"
 	"time"
 )
@@ -27,20 +27,20 @@ var versionTemplate = `Eclipse Che Cli:
  OS/Arch:      {{.Os}}/{{.Arch}}`
 
 // NewVersionCommand creates a new cobra.Command for `che version`
-func NewVersionCommand(cheCli *command.CheCli) *cobra.Command {
+func NewVersionCommand() *cobra.Command {
 
 	cmd := &cobra.Command{
 		Use:   "version [OPTIONS]",
 		Short: "Show the Eclipse Che2 cli version information",
 		RunE: func(cmd *cobra.Command, args []string) error {
-			return runVersion(cheCli)
+			return runVersion()
 		},
 	}
 
 	return cmd
 }
 
-func runVersion(cheCli *command.CheCli) error {
+func runVersion() error {
 
 	templateFormat := versionTemplate
 
@@ -65,9 +65,9 @@ func runVersion(cheCli *command.CheCli) error {
 		vd.BuildDate = t.Format(time.ANSIC)
 	}
 
-	if err2 := tmpl.Execute(cheCli.Out(), vd); err2 != nil && err == nil {
+	if err2 := tmpl.Execute(os.Stdout, vd); err2 != nil && err == nil {
 		err = err2
 	}
-	cheCli.Out().Write([]byte{'\n'})
+	os.Stdout.Write([]byte{'\n'})
 	return err
 }
