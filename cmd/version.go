@@ -16,14 +16,14 @@ type versionInfo struct {
 	GoVersion string
 	Os        string
 	Arch      string
-	BuildTime string `json:",omitempty"`
+	BuildDate string `json:",omitempty"`
 }
 
 var versionTemplate = `Eclipse Che Cli:
  Version:      {{.Version}}
  Go version:   {{.GoVersion}}
  Git commit:   {{.GitCommit}}
- Built:        {{.BuildTime}}
+ Built:        {{.BuildDate}}
  OS/Arch:      {{.Os}}/{{.Arch}}`
 
 // NewVersionCommand creates a new cobra.Command for `che version`
@@ -51,18 +51,18 @@ func runVersion(cheCli *command.CheCli) error {
 	}
 
 	vd := versionInfo{
-		Version:   cli.Version,
+		Version:   cli.GitSummary,
 		GoVersion: runtime.Version(),
 		GitCommit: cli.GitCommit,
-		BuildTime: cli.BuildTime,
+		BuildDate: cli.BuildDate,
 		Arch:      runtime.GOARCH,
 		Os:        runtime.GOOS,
 	}
 
 	// first we need to make BuildTime more human friendly
-	t, errTime := time.Parse(time.RFC3339Nano, vd.BuildTime)
+	t, errTime := time.Parse(time.RFC3339Nano, vd.BuildDate)
 	if errTime == nil {
-		vd.BuildTime = t.Format(time.ANSIC)
+		vd.BuildDate = t.Format(time.ANSIC)
 	}
 
 	if err2 := tmpl.Execute(cheCli.Out(), vd); err2 != nil && err == nil {
