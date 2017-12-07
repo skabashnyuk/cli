@@ -1,20 +1,48 @@
-package cli
+package cmd
 
 import (
 	"fmt"
-	"strings"
-
+	"github.com/mitchellh/go-homedir"
 	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
+	"github.com/spf13/viper"
+	"os"
 )
 
-// SetupRootCommand sets default usage, help, and error handling for the
-// root command.
-func SetupRootCommand(rootCmd *cobra.Command) {
+var cfgFile string
+var ShowVersion bool
+
+var rootCmd = &cobra.Command{
+	Use:              "che [OPTIONS] COMMAND [ARG...]",
+	Short:            "Eclipse Che cli",
+	SilenceUsage:     true,
+	SilenceErrors:    true,
+	TraverseChildren: true,
+	RunE: func(cmd *cobra.Command, args []string) error {
+		if ShowVersion {
+			showVersion()
+			return nil
+		}
+		cmd.SetOutput(os.Stderr)
+		cmd.HelpFunc()(cmd, args)
+		return nil
+
+	},
+}
+
+// Execute adds all child commands to the root command and sets flags appropriately.
+// This is called by main.main(). It only needs to happen once to the rootCmd.
+func Execute() {
+	if err := rootCmd.Execute(); err != nil {
+		fmt.Println(err)
+		os.Exit(1)
+	}
+}
+
+func init() {
+	cobra.OnInitialize(initConfig)
 	cobra.AddTemplateFunc("hasSubCommands", hasSubCommands)
-	cobra.AddTemplateFunc("hasManagementSubCommands", hasManagementSubCommands)
 	cobra.AddTemplateFunc("operationSubCommands", operationSubCommands)
-	cobra.AddTemplateFunc("managementSubCommands", managementSubCommands)
 	cobra.AddTemplateFunc("wrappedFlagUsages", wrappedFlagUsages)
 
 	rootCmd.SetUsageTemplate(usageTemplate)
@@ -24,6 +52,13 @@ func SetupRootCommand(rootCmd *cobra.Command) {
 
 	rootCmd.PersistentFlags().BoolP("help", "h", false, "Print usage")
 	rootCmd.PersistentFlags().MarkShorthandDeprecated("help", "please use --help")
+	rootCmd.Flags().BoolVarP(&ShowVersion, "version", "v", false, "Print version information and quit")
+
+	// Here you will define your flags and configuration settings.
+	// Cobra supports persistent flags, which, if defined here,
+	// will be global for your application.
+	rootCmd.PersistentFlags().StringVar(&cfgFile, "config", "", "config file (default is $HOME/.che/config.yaml)")
+
 }
 
 // FlagErrorFunc prints an error message which matches the format of the
@@ -37,35 +72,12 @@ func FlagErrorFunc(cmd *cobra.Command, err error) error {
 	if cmd.HasSubCommands() {
 		usage = "\n\n" + cmd.UsageString()
 	}
-	return StatusError{
-		Status:     fmt.Sprintf("%s\nSee '%s --help'.%s", err, cmd.CommandPath(), usage),
-		StatusCode: 125,
-	}
-}
 
-var helpCommand = &cobra.Command{
-	Use:               "help [command]",
-	Short:             "Help about the command",
-	PersistentPreRun:  func(cmd *cobra.Command, args []string) {},
-	PersistentPostRun: func(cmd *cobra.Command, args []string) {},
-	RunE: func(c *cobra.Command, args []string) error {
-		cmd, args, e := c.Root().Find(args)
-		if cmd == nil || e != nil || len(args) > 0 {
-			return errors.Errorf("unknown help topic: %v", strings.Join(args, " "))
-		}
-
-		helpFunc := cmd.HelpFunc()
-		helpFunc(cmd, args)
-		return nil
-	},
+	return errors.Errorf("%s\nSee '%s --help'.%s", err, cmd.CommandPath(), usage)
 }
 
 func hasSubCommands(cmd *cobra.Command) bool {
 	return len(operationSubCommands(cmd)) > 0
-}
-
-func hasManagementSubCommands(cmd *cobra.Command) bool {
-	return len(managementSubCommands(cmd)) > 0
 }
 
 func operationSubCommands(cmd *cobra.Command) []*cobra.Command {
@@ -87,37 +99,13 @@ func wrappedFlagUsages(cmd *cobra.Command) string {
 	return cmd.Flags().FlagUsagesWrapped(width - 1)
 }
 
-func managementSubCommands(cmd *cobra.Command) []*cobra.Command {
-	cmds := []*cobra.Command{}
-	for _, sub := range cmd.Commands() {
-		if sub.IsAvailableCommand() && sub.HasSubCommands() {
-			cmds = append(cmds, sub)
-		}
-	}
-	return cmds
-}
-
 var usageTemplate = `Usage:
 {{- if not .HasSubCommands}}	{{.UseLine}}{{end}}
 {{- if .HasSubCommands}}	{{ .CommandPath}} COMMAND{{end}}
 {{ .Short | trim }}
-{{- if gt .Aliases 0}}
-Aliases:
-  {{.NameAndAliases}}
-{{- end}}
-{{- if .HasExample}}
-Examples:
-{{ .Example }}
-{{- end}}
 {{- if .HasFlags}}
 Options:
 {{ wrappedFlagUsages . | trimRightSpace}}
-{{- end}}
-{{- if hasManagementSubCommands . }}
-Management Commands:
-{{- range managementSubCommands . }}
-  {{rpad .Name .NamePadding }} {{.Short}}
-{{- end}}
 {{- end}}
 {{- if hasSubCommands .}}
 Commands:
@@ -132,3 +120,32 @@ Run '{{.CommandPath}} COMMAND --help' for more information on a command.
 
 var helpTemplate = `
 {{if or .Runnable .HasSubCommands}}{{.UsageString}}{{end}}`
+
+// initConfig reads in config file and ENV variables if set.
+func initConfig() {
+	if cfgFile != "" {
+		// Use config file from the flag.
+		viper.SetConfigFile(cfgFile)
+	} else {
+		// Find home directory.
+		home, err := homedir.Dir()
+		if err != nil {
+			fmt.Println(err)
+			os.Exit(1)
+		}
+
+		viper.AddConfigPath(home)
+		viper.SetConfigName("/.che/config.yaml")
+	}
+
+	viper.AutomaticEnv() // read in environment variables that match
+
+	// If a config file is found, read it in.
+	if err := viper.ReadInConfig(); err == nil {
+		fmt.Println("Using config file:", viper.ConfigFileUsed())
+	}
+}
+
+func showVersion() {
+	fmt.Printf("Eclipse Che cli version %s, build %s\n", Version, GitCommit)
+}

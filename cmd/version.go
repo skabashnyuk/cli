@@ -1,12 +1,20 @@
-package system
+package cmd
 
 import (
 	"github.com/docker/cli/templates"
-	"github.com/skabashnyuk/cli/cli"
+	"github.com/pkg/errors"
 	"github.com/spf13/cobra"
 	"os"
 	"runtime"
 	"time"
+)
+
+var (
+	Version    = "unknown-version"
+	GitCommit  = "unknown-commit"
+	GitSummary = "unknown-summary"
+	GitBranch  = "unknown-branch"
+	BuildDate  = "unknown-buildtime"
 )
 
 // versionInfo contains version information of both the Client, and Server
@@ -26,18 +34,16 @@ var versionTemplate = `Eclipse Che Cli:
  Built:        {{.BuildDate}}
  OS/Arch:      {{.Os}}/{{.Arch}}`
 
-// NewVersionCommand creates a new cobra.Command for `che version`
-func NewVersionCommand() *cobra.Command {
+func init() {
+	rootCmd.AddCommand(versionCmd)
+}
 
-	cmd := &cobra.Command{
-		Use:   "version [OPTIONS]",
-		Short: "Show the Eclipse Che2 cli version information",
-		RunE: func(cmd *cobra.Command, args []string) error {
-			return runVersion()
-		},
-	}
-
-	return cmd
+var versionCmd = &cobra.Command{
+	Use:   "version [OPTIONS]",
+	Short: "Show the Eclipse Che2 cli version information",
+	RunE: func(cmd *cobra.Command, args []string) error {
+		return runVersion()
+	},
 }
 
 func runVersion() error {
@@ -46,15 +52,14 @@ func runVersion() error {
 
 	tmpl, err := templates.Parse(templateFormat)
 	if err != nil {
-		return cli.StatusError{StatusCode: 64,
-			Status: "Template parsing error: " + err.Error()}
+		return errors.Errorf("Template parsing error: %s", err.Error())
 	}
 
 	vd := versionInfo{
-		Version:   cli.GitSummary,
+		Version:   GitSummary,
 		GoVersion: runtime.Version(),
-		GitCommit: cli.GitCommit,
-		BuildDate: cli.BuildDate,
+		GitCommit: GitCommit,
+		BuildDate: BuildDate,
 		Arch:      runtime.GOARCH,
 		Os:        runtime.GOOS,
 	}
