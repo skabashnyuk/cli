@@ -40,7 +40,7 @@ func init() {
 
 var versionCmd = &cobra.Command{
 	Use:   "version [OPTIONS]",
-	Short: "Show the Eclipse Che2 cli version information",
+	Short: "Show the Eclipse Che cli version information",
 	RunE: func(cmd *cobra.Command, args []string) error {
 		return runVersion()
 	},
