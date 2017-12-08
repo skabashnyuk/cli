@@ -56,7 +56,7 @@ func runVersion() error {
 	}
 
 	vd := versionInfo{
-		Version:   GitSummary,
+		Version:   Version,
 		GoVersion: runtime.Version(),
 		GitCommit: GitCommit,
 		BuildDate: BuildDate,

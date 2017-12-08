@@ -4,10 +4,10 @@ go:
 notifications:
   email: false
 before_deploy:
-- GOOS=linux GOARCH=amd64 go build -ldflags="$(govvv -flags -pkg $(go list ./cmd))" -o che_Linux_x86_64
+- GOOS=linux GOARCH=amd64 go build -ldflags="$(govvv -flags -version $TRAVIS_TAG -pkg $(go list ./cmd))" -o che_Linux_x86_64
 #- GOOS=linux GOARCH=386 go build -o che_linux_386
 #- GOOS=linux GOARCH=arm go build -o che_linux_arm
-- GOOS=darwin GOARCH=amd64 go build -ldflags="$(govvv -flags -pkg $(go list ./cmd))" -o che_Darwin_x86_64
+- GOOS=darwin GOARCH=amd64 go build -ldflags="$(govvv -flags -version $TRAVIS_TAG -pkg $(go list ./cmd))" -o che_Darwin_x86_64
 #- GOOS=windows GOARCH=amd64 go build -o che_windows_amd64.exe
 #- GOOS=windows GOARCH=386 go build -o che_windows_386.exe
 deploy:
