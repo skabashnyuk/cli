@@ -65,40 +65,4 @@ func GetTags(organization string, repo string) ([]Tag, error) {
 	}
 
 	return nil, err
-
-	//res, err := http.Get(reqURL)
-	//if err != nil {
-	//	log.Printf("Failed to call REST api: %s, %s", reqURL, err)
-	//	return nil, err
-	//}
-	//
-	//data, err := ioutil.ReadAll(res.Body)
-	//res.Body.Close()
-	//if err != nil {
-	//	log.Printf("Failed to get image tags: %s", err)
-	//	return nil, err
-	//}
-	//var tagsRes TagsResponse
-	//err = json.Unmarshal(data, &tagsRes)
-	//return tagsRes.Results, nil
 }
-
-//
-///Tags Returns tags for a given user/organization and repository
-//func (registry *DockerHubRegistry) Tags(user, repository string) ([]string, error) {
-//	url := registry.url("/v2/repositories/%s/%s/tags", user, repository)
-//	tags := make([]string, 0, 10)
-//	var err error //We create this here, otherwise url will be rescoped with :=
-//	var response repositoriesResponse
-//	for err == nil {
-//		response.Next = ""
-//		url, err = registry.getDockerHubPaginatedJson(url, &response)
-//		for _, r := range response.Results {
-//			tags = append(tags, r.Name)
-//		}
-//	}
-//	if err != ErrNoMorePages {
-//		return nil, err
-//	}
-//	return tags, nil
-//}

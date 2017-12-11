@@ -3,6 +3,12 @@
 	"ignore": "test",
 	"package": [
 		{
+			"checksumSHA1": "OT4XN9z5k69e2RsMSpwW74B+yk4=",
+			"path": "github.com/blang/semver",
+			"revision": "2ee87856327ba09384cabd113bc6b5d174e9ec0f",
+			"revisionTime": "2017-07-27T06:48:18Z"
+		},
+		{
 			"checksumSHA1": "S54g0riZA4s00h9UdjozP0OD+MM=",
 			"path": "github.com/docker/cli/templates",
 			"revision": "6b63d7b96a41055baddc3fa71f381c7f60bd5d8e",
@@ -151,6 +157,12 @@
 			"path": "github.com/spf13/viper",
 			"revision": "0967fc9aceab2ce9da34061253ac10fb99bba5b2",
 			"revisionTime": "2017-04-17T08:08:15Z"
+		},
+		{
+			"checksumSHA1": "/kKwYqD04AkkDZFQhGwklKw3RFA=",
+			"path": "github.com/stretchr/testify",
+			"revision": "4d4bfba8f1d1027c4fdbe371823030df51419987",
+			"revisionTime": "2017-01-30T11:31:45Z"
 		},
 		{
 			"checksumSHA1": "SIhhNXud9FKua0s3WlGPRRkDKRg=",
