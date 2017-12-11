@@ -9,6 +9,13 @@
 			"revisionTime": "2017-07-27T06:48:18Z"
 		},
 		{
+			"checksumSHA1": "OFu4xJEIjiI8Suu+j/gabfp+y6Q=",
+			"origin": "github.com/stretchr/testify/vendor/github.com/davecgh/go-spew/spew",
+			"path": "github.com/davecgh/go-spew/spew",
+			"revision": "4d4bfba8f1d1027c4fdbe371823030df51419987",
+			"revisionTime": "2017-01-30T11:31:45Z"
+		},
+		{
 			"checksumSHA1": "S54g0riZA4s00h9UdjozP0OD+MM=",
 			"path": "github.com/docker/cli/templates",
 			"revision": "6b63d7b96a41055baddc3fa71f381c7f60bd5d8e",
@@ -117,6 +124,13 @@
 			"revisionTime": "2017-03-16T20:15:38Z"
 		},
 		{
+			"checksumSHA1": "zKKp5SZ3d3ycKe4EKMNT0BqAWBw=",
+			"origin": "github.com/stretchr/testify/vendor/github.com/pmezard/go-difflib/difflib",
+			"path": "github.com/pmezard/go-difflib/difflib",
+			"revision": "4d4bfba8f1d1027c4fdbe371823030df51419987",
+			"revisionTime": "2017-01-30T11:31:45Z"
+		},
+		{
 			"checksumSHA1": "lBehULzb2/kIK3wZ0gz2yNmHq9s=",
 			"path": "github.com/spf13/afero",
 			"revision": "9be650865eab0c12963d8753212f4f9c66cdcf12",
@@ -159,14 +173,20 @@
 			"revisionTime": "2017-04-17T08:08:15Z"
 		},
 		{
-			"checksumSHA1": "/kKwYqD04AkkDZFQhGwklKw3RFA=",
-			"path": "github.com/stretchr/testify",
+			"checksumSHA1": "JXUVA1jky8ZX8w09p2t5KLs97Nc=",
+			"path": "github.com/stretchr/testify/assert",
 			"revision": "4d4bfba8f1d1027c4fdbe371823030df51419987",
 			"revisionTime": "2017-01-30T11:31:45Z"
 		},
 		{
 			"checksumSHA1": "vqc3a+oTUGX8PmD0TS+qQ7gmN8I=",
 			"path": "golang.org/x/net/html",
+			"revision": "da118f7b8e5954f39d0d2130ab35d4bf0e3cb344",
+			"revisionTime": "2017-04-23T14:02:46Z"
+		},
+		{
+			"checksumSHA1": "00eQaGynDYrv3tL+C7l9xH0IDZg=",
+			"path": "golang.org/x/net/html/atom",
 			"revision": "da118f7b8e5954f39d0d2130ab35d4bf0e3cb344",
 			"revisionTime": "2017-04-23T14:02:46Z"
 		},
