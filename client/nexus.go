@@ -13,18 +13,16 @@ import (
 func GetArtifactMetadata(repository string, groupId string, artifactId string, version string, extension string) (*ArtifactMetadata, error) {
 	uri := fmt.Sprintf("%s/%s/%s/%s", repository, strings.Replace(groupId, ".", "/", -1), artifactId, version)
 	fileName := fmt.Sprintf("%s-%s.%s", artifactId, version, extension)
-	resp, err := http.Get(uri)
-	defer resp.Body.Close()
-
 	result := &ArtifactMetadata{
 		GroupId:    groupId,
 		ArtifactId: artifactId,
 		Version:    version,
 	}
-
+	resp, err := http.Get(uri)
 	if err != nil {
 		return result, err
 	}
+	defer resp.Body.Close()
 
 	if code := resp.StatusCode; code != http.StatusOK {
 		return nil, fmt.Errorf("%d GET %s", code, uri)
@@ -77,11 +75,11 @@ func GetMetadata(repository string, groupId string, artifactId string) (Metadata
 
 	uri := fmt.Sprintf("%s/%s/%s/maven-metadata.xml", repository, strings.Replace(groupId, ".", "/", -1), artifactId)
 	resp, err := http.Get(uri)
-	defer resp.Body.Close()
+
 	if err != nil {
 		return metadata, err
 	}
-
+	defer resp.Body.Close()
 	if code := resp.StatusCode; code != http.StatusOK {
 		return metadata, fmt.Errorf("%d GET %s", code, uri)
 	}
@@ -105,7 +103,7 @@ type Metadata struct {
 	XMLName    xml.Name   `xml:"metadata"`
 	GroupID    string     `xml:"groupId"`
 	ArtifactID string     `xml:"artifactId"`
-	Versioning Versioning `xml:"versioning`
+	Versioning Versioning `xml:"versioning"`
 }
 
 type Versioning struct {
