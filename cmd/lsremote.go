@@ -81,7 +81,7 @@ func runLsRemote() error {
 	}
 
 	sort.Slice(data, func(i, j int) bool {
-		return data[i].Version.GT(data[j].Version)
+		return data[i].Version.LE(data[j].Version)
 	})
 	t := template.New("test")
 	t, _ = t.Parse(tagsTemplate)
