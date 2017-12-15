@@ -83,7 +83,7 @@ func runLsRemote() error {
 	sort.Slice(data, func(i, j int) bool {
 		return data[i].Version.LE(data[j].Version)
 	})
-	t := template.New("test")
+	t := template.New("lsRemote")
 	t, _ = t.Parse(tagsTemplate)
 	w := tabwriter.NewWriter(os.Stdout, 2, 2, 2, ' ', 0)
 	//err = t.Execute(os.Stdout, tags)
